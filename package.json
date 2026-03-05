@@ -29,7 +29,8 @@
     "@neondatabase/serverless": "^1.0.2",
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.1",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
