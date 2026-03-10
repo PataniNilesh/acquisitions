@@ -24,6 +24,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "dev:docker": "sh ./scripts/dev.sh",
+    "test": "vitest run",
     "prod:docker": "sh ./scripts/prod.sh"
   },
   "repository": {
@@ -60,6 +61,8 @@
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.1"
+    "js-yaml": "^4.1.1",
+    "prettier": "^3.8.1",
+    "vitest": "^4.0.18"
   }
 }
