@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log*
+.git
+.gitignore
+.idea
+.neon_local
+logs
+*.log
+.env
+.env.*
+!.env.example
+!.env.development.example
+!.env.production.example
+Dockerfile
+docker-compose*.yml
+DOCKER.md
+AGENTS.md
