@@ -7,7 +7,10 @@ describe('Docker production environment (docker-compose.prod.yml)', () => {
   let compose;
 
   beforeAll(() => {
-    const filePath = resolve(import.meta.dirname, '../../docker-compose.prod.yml');
+    const filePath = resolve(
+      import.meta.dirname,
+      '../../docker-compose.prod.yml'
+    );
     compose = yaml.load(readFileSync(filePath, 'utf8'));
   });
 

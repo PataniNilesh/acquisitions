@@ -9,11 +9,13 @@ Acquisitions is a Node.js REST API built with Express 5 and ES modules (`"type":
 ## Commands
 
 ### Development
+
 ```
 npm run dev          # Start dev server with --watch (auto-restart on changes)
 ```
 
 ### Linting & Formatting
+
 ```
 npm run lint         # ESLint check
 npm run lint:fix     # ESLint auto-fix
@@ -22,6 +24,7 @@ npm run format:check # Prettier check only
 ```
 
 ### Database (Drizzle Kit)
+
 ```
 npm run db:generate  # Generate migrations from model changes
 npm run db:migrate   # Apply pending migrations
@@ -33,6 +36,7 @@ There is no test runner configured yet. The ESLint config includes a `tests/**/*
 ## Architecture
 
 ### Request flow
+
 `routes → controllers → services → db (Drizzle)`
 
 - **Routes** (`src/routes/`) — Define Express endpoints and bind controller handlers.
@@ -42,26 +46,33 @@ There is no test runner configured yet. The ESLint config includes a `tests/**/*
 - **Models** (`src/models/`) — Drizzle table definitions (`pgTable`). These are also referenced by `drizzle.config.js` for migration generation.
 
 ### Entry point
+
 `src/index.js` → loads dotenv → imports `src/server.js` → starts listening. The Express app itself is configured in `src/app.js` (middleware stack: helmet, JSON body parser, cookie-parser, morgan/winston logging, CORS).
 
 ### Path aliases
+
 The project uses Node.js subpath imports (defined in `package.json` `"imports"` field). Always use these when importing:
+
 - `#config/*`, `#controllers/*`, `#middleware/*`, `#models/*`, `#routes/*`, `#services/*`, `#utils/*`, `#validations/*`
 
 ### Database
+
 - Neon serverless PostgreSQL via `@neondatabase/serverless` + `drizzle-orm/neon-http`.
 - Connection is in `src/config/database.js`; exports `db` (Drizzle instance) and `sql` (raw Neon client).
 - Migrations live in `drizzle/` and are generated from model files.
 
 ### Auth pattern
+
 - Passwords hashed with bcrypt (salt rounds: 10).
 - JWT tokens (1-day expiry) set as httpOnly secure cookies via the `cookies` utility.
 - `jwttoken` utility wraps `jsonwebtoken` sign/verify.
 
 ### Logging
+
 Winston logger (`src/config/logger.js`) — writes JSON to `logs/error.log` and `logs/combined.log`. Console transport is added in non-production environments.
 
 ## Code Style
+
 - 2-space indentation, single quotes, semicolons required, LF line endings.
 - `prefer-const`, `no-var`, `object-shorthand`, `prefer-arrow-callback` enforced.
 - Unused function params prefixed with `_` are allowed (`argsIgnorePattern: "^_"`).

@@ -23,12 +23,12 @@ cp .env.development.example .env.development
 
 Fill in the required values:
 
-| Variable | Where to find it |
-|---|---|
-| `NEON_API_KEY` | Neon Console → Settings → API Keys |
-| `NEON_PROJECT_ID` | Neon Console → Project Settings → General |
+| Variable           | Where to find it                                          |
+| ------------------ | --------------------------------------------------------- |
+| `NEON_API_KEY`     | Neon Console → Settings → API Keys                        |
+| `NEON_PROJECT_ID`  | Neon Console → Project Settings → General                 |
 | `PARENT_BRANCH_ID` | Neon Console → Branches (copy the ID of your main branch) |
-| `ARCJET_KEY` | Your Arcjet dashboard |
+| `ARCJET_KEY`       | Your Arcjet dashboard                                     |
 
 The `DATABASE_URL`, `NEON_LOCAL`, and `NEON_LOCAL_HOST` values are pre-configured and should not be changed.
 
@@ -67,10 +67,10 @@ cp .env.production.example .env.production
 
 Fill in:
 
-| Variable | Value |
-|---|---|
+| Variable       | Value                                                                                                                   |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `DATABASE_URL` | Your full Neon Cloud connection string (e.g. `postgres://user:pass@ep-xxx.region.aws.neon.tech/dbname?sslmode=require`) |
-| `ARCJET_KEY` | Your production Arcjet key |
+| `ARCJET_KEY`   | Your production Arcjet key                                                                                              |
 
 ### 2. Build and start
 
@@ -88,11 +88,11 @@ docker compose -f docker-compose.prod.yml down
 
 The key difference between dev and prod is the `DATABASE_URL` and `NEON_LOCAL` environment variables:
 
-| | Development | Production |
-|---|---|---|
-| `DATABASE_URL` | `postgres://neon:npg@db:5432/neondb` | `postgres://...neon.tech/...` |
-| `NEON_LOCAL` | `true` | not set |
-| Database | Ephemeral branch via Neon Local proxy | Neon Cloud directly |
+|                | Development                           | Production                    |
+| -------------- | ------------------------------------- | ----------------------------- |
+| `DATABASE_URL` | `postgres://neon:npg@db:5432/neondb`  | `postgres://...neon.tech/...` |
+| `NEON_LOCAL`   | `true`                                | not set                       |
+| Database       | Ephemeral branch via Neon Local proxy | Neon Cloud directly           |
 
 When `NEON_LOCAL=true` is set, `src/config/database.js` configures the `@neondatabase/serverless` driver to communicate with the Neon Local proxy over HTTP instead of the default secure WebSocket connection. In production, this variable is absent, so the driver uses its standard cloud configuration.
 

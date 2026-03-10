@@ -69,7 +69,9 @@ describe('Database configuration', () => {
 
       const { db, sql } = await import('#config/database.js');
 
-      expect(mockNeonFn).toHaveBeenCalledWith('postgres://neon:npg@db:5432/neondb');
+      expect(mockNeonFn).toHaveBeenCalledWith(
+        'postgres://neon:npg@db:5432/neondb'
+      );
       expect(mockDrizzleFn).toHaveBeenCalledWith('mock-sql-client');
       expect(sql).toBe('mock-sql-client');
       expect(db).toBe('mock-db-instance');
@@ -79,7 +81,8 @@ describe('Database configuration', () => {
   describe('when NEON_LOCAL is not set (production / Neon Cloud)', () => {
     it('should not modify neonConfig', async () => {
       delete process.env.NEON_LOCAL;
-      process.env.DATABASE_URL = 'postgres://user:pass@ep-xxx.us-east-2.aws.neon.tech/dbname?sslmode=require';
+      process.env.DATABASE_URL =
+        'postgres://user:pass@ep-xxx.us-east-2.aws.neon.tech/dbname?sslmode=require';
 
       await import('#config/database.js');
 
@@ -90,7 +93,8 @@ describe('Database configuration', () => {
 
     it('should pass the cloud DATABASE_URL to the neon client', async () => {
       delete process.env.NEON_LOCAL;
-      const cloudUrl = 'postgres://user:pass@ep-xxx.us-east-2.aws.neon.tech/dbname?sslmode=require';
+      const cloudUrl =
+        'postgres://user:pass@ep-xxx.us-east-2.aws.neon.tech/dbname?sslmode=require';
       process.env.DATABASE_URL = cloudUrl;
 
       await import('#config/database.js');

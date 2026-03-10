@@ -7,7 +7,10 @@ describe('Docker development environment (docker-compose.dev.yml)', () => {
   let compose;
 
   beforeAll(() => {
-    const filePath = resolve(import.meta.dirname, '../../docker-compose.dev.yml');
+    const filePath = resolve(
+      import.meta.dirname,
+      '../../docker-compose.dev.yml'
+    );
     compose = yaml.load(readFileSync(filePath, 'utf8'));
   });
 
@@ -17,7 +20,9 @@ describe('Docker development environment (docker-compose.dev.yml)', () => {
     });
 
     it('should use the official neondatabase/neon_local image', () => {
-      expect(compose.services['neon-local'].image).toBe('neondatabase/neon_local:latest');
+      expect(compose.services['neon-local'].image).toBe(
+        'neondatabase/neon_local:latest'
+      );
     });
 
     it('should expose port 5432', () => {
@@ -25,19 +30,21 @@ describe('Docker development environment (docker-compose.dev.yml)', () => {
     });
 
     it('should load .env.development', () => {
-      expect(compose.services['neon-local'].env_file).toContain('.env.development');
+      expect(compose.services['neon-local'].env_file).toContain(
+        '.env.development'
+      );
     });
 
     it('should have a healthcheck using pg_isready', () => {
       const hc = compose.services['neon-local'].healthcheck;
       expect(hc).toBeDefined();
-      expect(hc.test).toEqual(
-        expect.arrayContaining(['CMD', 'pg_isready'])
-      );
+      expect(hc.test).toEqual(expect.arrayContaining(['CMD', 'pg_isready']));
     });
 
     it('should be on the acquisition-network', () => {
-      expect(compose.services['neon-local'].networks).toContain('acquisition-network');
+      expect(compose.services['neon-local'].networks).toContain(
+        'acquisition-network'
+      );
     });
   });
 
@@ -67,9 +74,7 @@ describe('Docker development environment (docker-compose.dev.yml)', () => {
     it('should mount source code for hot reload', () => {
       const volumes = compose.services.app.volumes;
       expect(volumes).toEqual(
-        expect.arrayContaining([
-          expect.stringContaining('./src:/app/src'),
-        ])
+        expect.arrayContaining([expect.stringContaining('./src:/app/src')])
       );
     });
 
