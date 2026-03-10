@@ -264,3 +264,6 @@
 {"level":"info","message":"User contact@jsmastery.com created successfully","service":"acquisitions-api"}
 {"level":"info","message":"User registered successfully: contact@jsmastery.com","service":"acquisitions-api"}
 {"level":"info","message":"::1 - - [10/Mar/2026:06:06:08 +0000] \"POST /api/auth/sign-up HTTP/1.1\" 201 107 \"-\" \"HTTPie\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Mar/2026:12:11:49 +0000] \"GET /health HTTP/1.1\" 200 74 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Mar/2026:12:11:49 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [10/Mar/2026:12:11:49 +0000] \"GET /nonexistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-api"}
